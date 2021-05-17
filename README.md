@@ -1,1 +1,1 @@
-# Tugas1Metnum Pertemuan 7
+# Tugas1 Metode Numerik Pertemuan 7
