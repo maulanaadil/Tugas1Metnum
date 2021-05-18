@@ -35,8 +35,10 @@ public class MetodeRegulasiFalsi {
             selangBaru = "[c,b]";
         }
 
-        System.out.println("Iterasi |   a   |   b   |   c   |     f(a)    |     f(b)    |   f(c)   |   selangBaru  |   selangBaru|a-b|   |   |a-b| < galat   |   |f(c) < galat|   |   f(c) = 0   |");
-        System.out.println(i + "    | " + String.format("%.8f", a) + " | " + String.format("%.8f", b) + " | " + String.format("%.8f", c) + " | " + String.format("%.8f", fa) + " | " + String.format("%.8f", fb) + " | " + String.format("%.8f", fc) + " | " + selangBaru + " | " + String.format("%.8f", lebarSelangBaru) + " | " + " | " + false + " | " + false + " | " + false + "|" );
+        System.out.format("%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |\n", "iterasi", "a","b","c","f(a)","f(b)","f(c)","selang baru", "|a - b|", " |f(c) < galat|", "f(c) = 0");
+//        System.out.println("Iterasi |   a   |   b   |   c   |     f(a)    |     f(b)    |   f(c)   |   selangBaru  |   selangBaru|a-b|   |   |a-b| < galat   |   |f(c) < galat|   |   f(c) = 0   |");
+//        System.out.println(i + "    | " + String.format("%.8f", a) + " | " + String.format("%.8f", b) + " | " + String.format("%.8f", c) + " | " + String.format("%.8f", fa) + " | " + String.format("%.8f", fb) + " | " + String.format("%.8f", fc) + " | " + selangBaru + " | " + String.format("%.8f", lebarSelangBaru) + " | " + " | " + false + " | " + false + " | " + false + "|" );
+        System.out.format("%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |\n", i, String.format("%.8f", a),String.format("%.8f", b),String.format("%.8f", c),String.format("%.8f", fa),String.format("%.8f", fb),String.format("%.8f", fc),selangBaru, String.format("%.8f", lebarSelangBaru), nilaiGalat, fcNilaiGalat, fcNol);
 
         if (faxfc < 0) {
             b = c;
@@ -79,10 +81,10 @@ public class MetodeRegulasiFalsi {
                     break;
                 }
 
-                System.out.println(i + "    | " + String.format("%.8f", a) + " | " + String.format("%.8f", b) + " | " + String.format("%.8f", c) + " | " + String.format("%.8f", fa) + " | " + String.format("%.8f", fb) + " | " + String.format("%.8f", fc) + " | " + selangBaru + " | " + String.format("%.8f", lebarSelangBaru) + " | " + " | " + nilaiGalat + " | " + fcNilaiGalat + " | " + fcNol + "|" );
+                System.out.format("%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |\n", i, String.format("%.8f", a),String.format("%.8f", b),String.format("%.8f", c),String.format("%.8f", fa),String.format("%.8f", fb),String.format("%.8f", fc),selangBaru, String.format("%.8f", lebarSelangBaru), nilaiGalat, fcNilaiGalat, fcNol);
 
             } while(lebarSelangBaru > galat || fc == 0 || Math.abs(fc) > galat);
-            System.out.println(i + "    | " + String.format("%.8f", a) + " | " + String.format("%.8f", b) + " | " + String.format("%.8f", c) + " | " + String.format("%.8f", fa) + " | " + String.format("%.8f", fb) + " | " + String.format("%.8f", fc) + " | " + selangBaru + " | " + String.format("%.8f", lebarSelangBaru) + " | " + " | " + nilaiGalat + " | " + fcNilaiGalat + " | " + fcNol + "|" );
+            System.out.format("%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s |\n", i, String.format("%.8f", a),String.format("%.8f", b),String.format("%.8f", c),String.format("%.8f", fa),String.format("%.8f", fb),String.format("%.8f", fc),selangBaru, String.format("%.8f", lebarSelangBaru), nilaiGalat, fcNilaiGalat, fcNol);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

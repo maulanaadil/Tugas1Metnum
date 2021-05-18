@@ -9,9 +9,8 @@ public class MetodeNewRaphson {
         double xSebelum = x0 + 1;
         double selisih = xSebelum - x0;
 
-        System.out.println("iterasi | xn  | f(xn) | turunanf(xn)");
-        System.out.println(i + " | " + String.format("%.8f", x0) + " | " + String.format("%.8f", fungsiX(x0)) + " | " + String.format("%.8f", tFungsiX(x0)));
-
+        System.out.format("%12s |%12s |%12s |%12s |\n", "iterasi", "xn", "f(xn)", "turunanF(xn)");
+        System.out.format("%12s |%12s |%12s |%12s |\n", i,String.format("%.8f", x0) , String.format("%.8f", fungsiX(x0)), String.format("%.8f", tFungsiX(x0)));
 
         while (Math.abs(selisih) > galat) {
             i++;
@@ -19,7 +18,7 @@ public class MetodeNewRaphson {
             x0 = xSebelum - (fungsiX(x0) / tFungsiX(x0));
             selisih = xSebelum - x0;
 
-            System.out.println(i + " | " + String.format("%.8f", x0) + " | " + String.format("%.8f", fungsiX(x0)) + " | " + String.format("%.8f", tFungsiX(x0)));
+            System.out.format("%12s |%12s |%12s |%12s |\n", i,String.format("%.8f", x0) , String.format("%.8f", fungsiX(x0)), String.format("%.8f", tFungsiX(x0)));
         }
 
         System.out.println("Akar Persamaan : " + String.format("%.8f", x0));
