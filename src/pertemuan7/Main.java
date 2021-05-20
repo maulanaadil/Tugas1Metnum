@@ -29,21 +29,26 @@ public class Main {
 
     public static class Metode {
         public static double bagiDua(double a, double b, double galat) {
-            double c = (a + b) / 2;
-            double nilaiLebarSelangBaru = Math.abs(a - b);
+            double c;
+            double nilaiLebarSelangBaru;
 
             String lebarSelangBaru = "";
             boolean nilaiGalat = false;
             int i = 1;
 
+            c = (a + b) / 2;
             double fa = fungsiX(a);
             double fc = fungsiX(c);
             double faxfc = fa * fc;
 
+
             if (faxfc < 0) {
                 lebarSelangBaru = "[a,c]";
+                nilaiLebarSelangBaru = Math.abs(c-b);
             } else {
                 lebarSelangBaru = "[c,b]";
+                nilaiLebarSelangBaru = Math.abs(c-b);
+
             }
 
             System.out.println("Nilai Fungsi(a) * Fungsi(c) : " + faxfc);
@@ -59,23 +64,30 @@ public class Main {
             try {
                 do {
                     i++;
+                    if (faxfc < 0 ) {
+                        b = c;
+                    } else {
+                        a = c;
+                    }
+                    c = (a + b) / 2;
+                    if (b==c) {
+                        nilaiLebarSelangBaru = Math.abs(a - b);
+                    } else {
+                        nilaiLebarSelangBaru = Math.abs(c - b);
+                    }
                     fa = fungsiX(a);
                     fc = fungsiX(c);
                     faxfc = fa * fc;
 
-                    if (faxfc < 0) {
+
+                    if(faxfc<0){
                         lebarSelangBaru = "[a,c]";
-                        b = c;
-                    } else {
+                    }else{
                         lebarSelangBaru = "[c,b]";
-                        a = c;
                     }
-                    c = (a + b) / 2;
-                    nilaiLebarSelangBaru = Math.abs(a - b);
 
                     if (nilaiLebarSelangBaru < galat) {
                         nilaiGalat = true;
-                        lebarSelangBaru = "";
                     }
 
                     System.out.format("%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s | |%12s |\n", i, String.format("%.8f", a), String.format("%.8f", b), String.format("%.8f", c), String.format("%.8f", fa), String.format("%.8f", fc), lebarSelangBaru, String.format("%.8f", nilaiLebarSelangBaru), nilaiGalat);
@@ -83,7 +95,6 @@ public class Main {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
             System.out.println();
             System.out.println("Akar Hampiran : " + String.format("%.8f", c));
             System.out.println("f(x) : " + String.format("%.8f", fc));
