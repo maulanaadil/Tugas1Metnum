@@ -28,28 +28,34 @@ public class Main {
     }
 
     public static class Metode {
-        public double bagiDua(double a, double b, double galat) {
+        public static double bagiDua(double a, double b, double galat) {
             double c = (a + b) / 2;
             double nilaiLebarSelangBaru = Math.abs(a - b);
 
-            String lebarSelangBaru;
+            String lebarSelangBaru = "";
             boolean nilaiGalat = false;
             int i = 1;
 
             double fa = fungsiX(a);
             double fc = fungsiX(c);
             double faxfc = fa * fc;
-            System.out.println("Nilai Fungsi(a) * Fungsi(c) : " + faxfc);
-            System.out.format("%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s | |%12s |\n", "Iterasi", "a", "b", "c", "f(a)", "f(c)", "Selang Baru", "|a - b|", " |a - b| < galat");
 
             if (faxfc < 0) {
                 lebarSelangBaru = "[a,c]";
-                b = c;
             } else {
                 lebarSelangBaru = "[c,b]";
+            }
+
+            System.out.println("Nilai Fungsi(a) * Fungsi(c) : " + faxfc);
+            System.out.format("%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s | |%12s |\n", "Iterasi", "a", "b", "c", "f(a)", "f(c)", "Selang Baru", "|a - b|", " |a - b| < galat");
+            System.out.format("%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s | |%12s |\n", i, String.format("%.8f", a), String.format("%.8f", b), String.format("%.8f", c), String.format("%.8f", fa), String.format("%.8f", fc), lebarSelangBaru, String.format("%.8f", nilaiLebarSelangBaru), nilaiGalat);
+
+            if (faxfc < 0) {
+                b = c;
+            } else {
                 a = c;
             }
-            System.out.format("%12s |%12s |%12s |%12s |%12s |%12s |%12s |%12s | |%12s |\n", i, String.format("%.8f", a), String.format("%.8f", b), String.format("%.8f", c), String.format("%.8f", fa), String.format("%.8f", fc), lebarSelangBaru, String.format("%.8f", nilaiLebarSelangBaru), nilaiGalat);
+
             try {
                 do {
                     i++;
@@ -78,6 +84,7 @@ public class Main {
                 System.out.println(e.getMessage());
             }
 
+            System.out.println();
             System.out.println("Akar Hampiran : " + String.format("%.8f", c));
             System.out.println("f(x) : " + String.format("%.8f", fc));
             return c;
@@ -220,7 +227,7 @@ public class Main {
             return (3 * Math.pow(x, 2)) + (10 * x) - 10;
         }
 
-        public double fungsiX(double x) {
+        public static double fungsiX(double x) {
             return (Math.pow(x, 3)) + 5 * (Math.pow(x, 2)) - (10 * x) - 4;
         }
     }
