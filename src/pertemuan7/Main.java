@@ -144,12 +144,14 @@ public class Main {
             System.out.println();
             System.out.println("Akar Hampiran : " + String.format("%.8f", c));
             System.out.println("f(x) : " + String.format("%.8f", fc));
+
+            // mengembalikan nilai c
             return c;
         }
 
         public static double regulaFalsi(double a, double b, double galat) {
             // Menginisialisasikan variabel yang akan dipakai
-            double fa, fb, bilangan1,bilangan2,bilangan3,bilangan4, c, nilaiLebarSelangBaru, fc,faxfc;
+            double fa, fb, bilangan1, bilangan2, bilangan3, bilangan4, c, nilaiLebarSelangBaru, fc, faxfc;
             int i = 1;
             boolean nilaiGalat = false;
             boolean fcNol = false;
@@ -287,77 +289,152 @@ public class Main {
             System.out.println();
             System.out.println("Akar hampiran   : " + String.format("%.8f", c));
             System.out.println("Dengan F(x)     : " + String.format("%.8f", fc));
+
+            // mengembalikan nilai c
             return c;
         }
 
         public static double newRaphson(double x0, double galat) {
-
-            double xSebelum = x0 + 1;
-            double selisih = xSebelum - x0;
+            // Menginisialisasikan variabel yang akan dipakai
+            double xSebelum, selisih, fx, tFx;
             boolean xnKondisiTrueFalse = false;
             int i = 1;
 
-            System.out.format("%12s |%12s |%12s |%12s |%12s |%12s |\n", "iterasi", "xn", "f(xn)", "turunanF(xn)", "|Xn - Xn - 1|", "|Xn - Xn - 1| < galat");
-            System.out.format("%12s |%12s |%12s |%12s |%12s |%22s |\n", i, String.format("%.8f", x0), String.format("%.8f", fungsiX(x0)), String.format("%.8f", tFungsiX(x0)), "", xnKondisiTrueFalse);
+            // menghitung nilai xn
+            xSebelum = x0 + 1;
 
+            // menghitung selisih dari nilai xn - x0
+            selisih = Math.abs(xSebelum - x0);
+
+            // memasukan nilai x0 kedalam persamaan fungsiX
+            fx = fungsiX(x0);
+
+            // memasukan nilai x0 kedalam turunan persamaan fungsiX
+            tFx = tFungsiX(x0);
+
+            // Mencetak nilai variabel yang sudah terisi nilai kedalam program
+            System.out.format("%12s |%12s |%12s |%12s |%12s |%12s |\n", "iterasi", "xn", "f(xn)", "turunanF(xn)", "|Xn - X(n-1)|", "|Xn - X(n-1)| < galat");
+            System.out.format("%12s |%12s |%12s |%12s |%12s |%22s |\n", i, String.format("%.8f", x0), String.format("%.8f", fx), String.format("%.8f", tFx), "", xnKondisiTrueFalse);
+
+            /*
+             terdapat kondisi apabila selisih lebih besar dari galat maka
+             memulai proses looping
+             */
             while (Math.abs(selisih) > galat) {
                 i++;
+
+                // menginisialisasikan nilai xSebelum menjadi x0
                 xSebelum = x0;
+
+                // menghitung rumus Xn + 1
                 x0 = xSebelum - (fungsiX(x0) / tFungsiX(x0));
+
+                // Menghitung selisih dengan menggunakan method Math.abs agar nilainya absolut
                 selisih = Math.abs(xSebelum - x0);
 
+                /*
+                mengkondisikan apabila selisih kurang dari nilai galat maka
+                nilai xnKondisiTrueFalse adalah true
+                jika tidak maka false
+                 */
                 if (selisih < galat) {
                     xnKondisiTrueFalse = true;
                 } else {
                     xnKondisiTrueFalse = false;
                 }
 
+                // Mencetak nilai variabel yang sudah terisi nilai kedalam program
                 System.out.format("%12s |%12s |%12s |%12s |%12s |%22s |\n", i, String.format("%.8f", x0), String.format("%.8f", fungsiX(x0)), String.format("%.8f", tFungsiX(x0)), String.format("%.8f", selisih), xnKondisiTrueFalse);
             }
 
+            // Mencetak nilai variabel yang sudah terisi nilai kedalam program
             System.out.println("Akar Persamaan : " + String.format("%.8f", x0));
+
+            // mengembalikan nilai x0
             return x0;
         }
 
         public static double secant(double x0, double x1, double galat) {
-            int i = 0;
-            int k = 1;
+            // Menginisialisasikan variabel yang akan dipakai
+            int k, i;
+            double x2, selisih, fx, fx1;
             boolean cekKondisiXn = false;
-            double x2 = 0;
-            double selisih;
-            double fx = fungsiX(x0);
-            double fx1 = fungsiX(x1);
 
+            i = 0;
+            k = 1;
+            x2 = 0;
+
+            // memasukan nilai x0 kedalam persamaan fungsiX
+            fx = fungsiX(x0);
+
+            // memasukan nilai x1 kedalam persamaan fungsiX
+            fx1 = fungsiX(x1);
+
+            // menghitung selisih dari nilai xn - x0
             selisih = Math.abs(x1 - x0);
+
+            /*
+            Kondisi dimana selisih kurang dari galat maka
+            cekKonidisiXn adalah true jika tidak
+            maka false
+             */
             if (selisih < galat) {
                 cekKondisiXn = true;
             } else {
                 cekKondisiXn = false;
             }
-            System.out.format("%20s |%20s |%20s |%20s |%20s |\n", "iterasi", "Xn", "F(Xn)", "|Xn - Xn - 1|", "|Xn - Xn - 1| < galat");
+
+            // Mencetak nilai variabel yang sudah terisi nilai kedalam program
+            System.out.format("%20s |%20s |%20s |%20s |%20s |\n", "iterasi", "Xn", "F(Xn)", "|Xn - X(n-1)|", "|Xn - X(n-1)| < galat");
             System.out.format("%20s |%20s |%20s |%20s |%20s |\n", i, String.format("%.8f", x0), String.format("%.8f", fx), "", "");
             System.out.format("%20s |%20s |%20s |%20s |%20s |\n", k, String.format("%.8f", x1), String.format("%.8f", fx1), String.format("%.8f", selisih), cekKondisiXn);
 
             try {
+                // Memulai proses looping
                 do {
                     k++;
+
+                    // menghitung rumus X(n+1)
                     x2 = x1 - ((fungsiX(x1) * (x1 - x0)) / (fungsiX(x1) - fungsiX(x0)));
+
+                    // memasukan nilai x2 kedalam persamaan fungsiX
                     double fx2 = fungsiX(x2);
+
+                    // menghitung selisih dari nilai xn - x0
                     selisih = Math.abs(x2 - x1);
+
+                    /*
+                    Kondisi dimana selisih kurang dari galat maka
+                    cekKonidisiXn adalah true jika tidak
+                    maka false
+                     */
                     if (selisih < galat) {
                         cekKondisiXn = true;
                     } else {
                         cekKondisiXn = false;
                     }
+
+                    // Mencetak nilai variabel yang sudah terisi nilai kedalam program
                     System.out.format("%20s |%20s |%20s |%20s |%20s |\n", k, String.format("%.8f", x2), String.format("%.8f", fx2), String.format("%.8f", selisih), cekKondisiXn);
+
+                    // mengubah nilai x0 menjadi x1
                     x0 = x1;
+
+                    // mengubah nilai x1 menjadi x2
                     x1 = x2;
+
+                    /*
+                    Mengkondisikan apabila selisih lebih besar dari galat
+                    maka looping dihentikan
+                     */
                 } while (selisih > galat);
                 System.out.println("Akar Hampiran : " + String.format("%.8f", x2));
 
             } catch (Exception e) {
+                // Menangkap Exception Error dari program java
                 System.out.println(e.getMessage());
             }
+            // mengembalikan nilai x2
             return x2;
         }
 
